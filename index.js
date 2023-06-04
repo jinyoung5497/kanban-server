@@ -4,7 +4,6 @@ const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
 const boardRoute = require('./Routes/boardRoute')
-
 // express app
 const app = express()
 app.use(cors())
@@ -21,7 +20,8 @@ app.use((req, res, next) => {
 app.use('/api/boards', boardRoute)
 
 // connect to db
-mongoose.connect(process.env.URL)
+mongoose
+  .connect(process.env.URL)
   .then(() => {
     console.log('connected to database')
     // listen to port
@@ -31,4 +31,4 @@ mongoose.connect(process.env.URL)
   })
   .catch((err) => {
     console.log(err)
-  }) 
+  })
